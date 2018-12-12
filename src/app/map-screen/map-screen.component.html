@@ -1,0 +1,7 @@
+<app-attribute-tabs (changeEvent)="listComp.changeList($event)"></app-attribute-tabs>
+<div class="container"
+      fxLayout="row"
+      fxLayoutAlign="right stretch">
+    <app-attribute-list fxFlex="15" #listComp></app-attribute-list>
+    <app-map-box fxFlex></app-map-box>
+</div>

@@ -7,4 +7,10 @@ const routes: Routes = [];
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
+/**
+ * Contains routes to change pages.
+ * 
+ * **Not used in application.
+ */
 export class AppRoutingModule { }
