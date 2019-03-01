@@ -1,17 +1,27 @@
-var mongo = require('mongodb').MongoClient;
-var assert = require('assert');
-var url = 'mongodb://McRae:Hotpepper1!@buster-shard-00-00-gwq3d.mongodb.net:27017,buster-shard-00-01-gwq3d.mongodb.net:27017,buster-shard-00-02-gwq3d.mongodb.net:27017/test?ssl=true&replicaSet=Buster-shard-0&authSource=admin&retryWrites=tru';
+function getCounty(name, callBack){
+	const mongoose = require('mongoose');
+//Connect to mongodb
+//Username: McRae
+//Password: WesternCS465!
+mongoose.connect('mongodb://McRae:WesternCS495!@buster-shard-00-00-gwq3d.mongodb.net:27017,buster-shard-00-01-gwq3d.mongodb.net:27017,buster-shard-00-02-gwq3d.mongodb.net:27017/test?ssl=true&replicaSet=Buster-shard-0&authSource=admin&retryWrites=true', {useNewUrlParser: true});
 
-function findCounty(countyName){
-    mongo.connect(url, function(err, db) {
-		assert.equal(null, err);
-		var dbName = db.db("Capstone");
-		//var cursor = db.collection('2010_caner_by_county').find("county": countyName);
-		dbName.collection("2010_caner_by_county").findOne({'county': countyName}, function(err, result){
-			if(err) throw err;
-            console.log(result);
-            //res.send(JSON.stringify(result));
-			return result.cases;
-        });
-	});
+//On success print to screen
+mongoose.connection.once('open',function(){
+        console.log('Connection has been made');
+}).on('error',function(error){
+        console.log('Connection error', error);
+
+});
+        var db = client.db('Capstone');
+        var collection = db.collection('2010_cancer_by_county');
+  collection.find({county: 'wake'}).toArray(function(err, result){
+        if(err) throw err;
+        db.close();
+        console.log(result); // shows the county name
+        // return result using callback parameter
+        return callBack(result);
+    });
+
 }
+
+

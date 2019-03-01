@@ -7,6 +7,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DisplayService } from './display.service';
 import { MapBoxComponent } from './map-box/map-box.component';
 import { MainTabsComponent } from './main-tabs/main-tabs.component';
 import { MapScreenComponent } from './map-screen/map-screen.component';
@@ -39,7 +40,7 @@ import { AttributeListComponent } from './attribute-list/attribute-list.componen
   exports: [
     MatTabsModule
   ],
-  providers: [],
+  providers: [ DisplayService ],
   entryComponents: [MapScreenComponent],
   bootstrap: [AppComponent],
 })

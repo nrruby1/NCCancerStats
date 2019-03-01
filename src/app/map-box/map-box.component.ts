@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 //import { MapService } from '../map.service';
 //import { GeoJson, FeatureCollection } from '../map';
-declare function findCounty(county: string): any;
+declare function findCounty(): any;
 
 @Component({
   selector: 'app-map-box',
@@ -23,7 +23,8 @@ export class MapBoxComponent implements OnInit {
   constructor() { };
 
   ngOnInit() {
-    this.buildMap();
+  this.buildMap();
+  findCounty('wake');
   };
 
   buildMap() {
@@ -43,7 +44,7 @@ export class MapBoxComponent implements OnInit {
         closeButton: false
     });
 	
-	//var caseRate = findCounty('wake');
+    //findCounty();
 
     
     map.on('load', function() {
