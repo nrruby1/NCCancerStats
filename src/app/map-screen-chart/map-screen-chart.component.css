@@ -1,0 +1,13 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+table {
+  width: 100%;
+}
+
+.table-container {
+  position: relative;
+  overflow: auto;
+  width: 540px
+}

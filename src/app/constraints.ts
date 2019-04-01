@@ -4,6 +4,14 @@
 export class Constraints {
     constructor(){}
 
+    COUNTIES_CONST: number = 0;
+    YEARS_CONST: number = 1;
+    TYPES_CONST: number = 2;
+
+    yearsNum: number = 5;
+    typesNum: number = 2;
+    countiesNum: number = 100;
+
     years = [
         {id: 1, name: '2010'},
         {id: 2, name: '2011'},

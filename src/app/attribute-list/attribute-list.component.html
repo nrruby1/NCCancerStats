@@ -1,9 +1,9 @@
-<cdk-virtual-scroll-viewport itemSize="10" class="example-viewport">
+<cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
 <form [formGroup]="form">
-    <label formArrayName="set" *cdkVirtualFor="let name of form.controls.set.controls; let i =index" class="example-item">
-      <input type = "checkbox" [formControlName]="i">
-      {{set[i].name}}<br>
-    </label>
+  <label formArrayName="set" *cdkVirtualFor="let name of form.controls.set.controls; let i =index" class="example-item">
+    <input type = "checkbox" [formControlName]="i" (change)="onCheckboxChange($event, i)"> 
+    {{set[i].name}}<br>
+  </label>
   
 </form>
 </cdk-virtual-scroll-viewport>

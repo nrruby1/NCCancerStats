@@ -2,15 +2,13 @@
     display: block;
     left: 0;
 
-    height: 100%;
-    width: 20ex;
-    background-color: lightgray;
+    height: 260px;
+    width: 100%;
+    background-color: white
 }
 
 .example-viewport {
     height: 100%;
-    width: 200px;
-    border: 1px solid black;
   }
   
   .example-item {

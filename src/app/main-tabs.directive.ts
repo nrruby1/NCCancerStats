@@ -13,3 +13,4 @@ export class MainTabsDirective {
   constructor(public viewContainerRef: ViewContainerRef) { }
 
 }
+ 

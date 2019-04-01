@@ -85,6 +85,14 @@ export class MapBoxComponent implements OnInit {
                 .setText(feature.properties.NAME)
                 .addTo(map);
         });
+
+        map.on('click', 'counties', function(e) {
+            var feature = e.features[0];
+
+            console.log("click");
+
+            map.setPaintProperty("counties", 'fill-color', "#6e599f");
+        });
         
         map.on('mouseleave', 'counties', function() {
             map.getCanvas().style.cursor = '';

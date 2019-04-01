@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTableModule } from '@angular/material/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling'
@@ -15,6 +17,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainTabsDirective } from './main-tabs.directive';
 import { AttributeTabsComponent } from './attribute-tabs/attribute-tabs.component';
 import { AttributeListComponent } from './attribute-list/attribute-list.component';
+import { MapScreenSubComponent } from './map-screen-sub/map-screen-sub.component';
+import { MapScreenChartComponent } from './map-screen-chart/map-screen-chart.component';
+import { DemoComponentComponent } from './demo-component/demo-component.component';
+import { MapScreenSub2Component } from './map-screen-sub2/map-screen-sub2.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +31,18 @@ import { AttributeListComponent } from './attribute-list/attribute-list.componen
     StatsScreenComponent,
     MainTabsDirective,
     AttributeTabsComponent,
-    AttributeListComponent
+    AttributeListComponent,
+    MapScreenSubComponent,
+    MapScreenChartComponent,
+    DemoComponentComponent,
+    MapScreenSub2Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatTabsModule,
+    MatRadioModule,
+    MatTableModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -40,7 +52,7 @@ import { AttributeListComponent } from './attribute-list/attribute-list.componen
     MatTabsModule
   ],
   providers: [],
-  entryComponents: [MapScreenComponent],
+  entryComponents: [MapScreenComponent, StatsScreenComponent, DemoComponentComponent],
   bootstrap: [AppComponent],
 })
 
