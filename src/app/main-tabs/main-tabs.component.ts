@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular
 import { MatTabChangeEvent } from '@angular/material';
 import { MainTabsDirective } from '../main-tabs.directive';
 import { MapScreenComponent } from '../map-screen/map-screen.component';
+import { DemoComponentComponent } from '../demo-component/demo-component.component';
+import { StatsScreenComponent } from '../stats-screen/stats-screen.component';
 
 @Component({
   selector: 'app-main-tabs',
@@ -25,7 +27,7 @@ export class MainTabsComponent implements OnInit {
   ngOnInit() { 
     this.tabSelectionChanged(null);
    }
-
+ 
    /**
     * When a tab selection changes, update the component.
     * @param event Reference to the selected tab.
@@ -33,8 +35,17 @@ export class MainTabsComponent implements OnInit {
   tabSelectionChanged(event: MatTabChangeEvent){
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(MapScreenComponent);
     let viewContainerRef = this.tabHost.viewContainerRef;
+    
+    if(event != null) {
+      let id = event.index;
+      if(id === 0) {
+        componentFactory = this.componentFactoryResolver.resolveComponentFactory(MapScreenComponent);
+      } else if(id === 1) {
+        componentFactory = this.componentFactoryResolver.resolveComponentFactory(DemoComponentComponent);
+      }
+    }
     viewContainerRef.clear();
-    let componentRef = viewContainerRef.createComponent(componentFactory);    
+    let componentRef = viewContainerRef.createComponent(componentFactory);     
   }
 
 }

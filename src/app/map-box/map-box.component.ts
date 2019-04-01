@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 //import { MapService } from '../map.service';
 //import { GeoJson, FeatureCollection } from '../map';
-declare function findCounty(): any;
 
 @Component({
   selector: 'app-map-box',
@@ -23,8 +22,7 @@ export class MapBoxComponent implements OnInit {
   constructor() { };
 
   ngOnInit() {
-  this.buildMap();
-  findCounty('wake');
+    this.buildMap();
   };
 
   buildMap() {
@@ -43,9 +41,6 @@ export class MapBoxComponent implements OnInit {
     var popup = new mapboxgl.Popup({
         closeButton: false
     });
-	
-    //findCounty();
-
     
     map.on('load', function() {
         // county polygons uploaded as vector tiles
@@ -81,18 +76,22 @@ export class MapBoxComponent implements OnInit {
         map.on('mousemove', 'counties', function(e) {
             // Change the cursor style as a UI indicator.
             map.getCanvas().style.cursor = 'pointer';
-			
-			//var caseRate = JSON.stringify(findCounty("wake"));
-			
-			
+    
             // Single out the first found feature.
             var feature = e.features[0];
-				
+    
             // Display a popup with the name of the county
             popup.setLngLat(e.lngLat)
-				//.setText(feature.properties.NAME + " cases: " + JSON.stringify(caseRate))
                 .setText(feature.properties.NAME)
                 .addTo(map);
+        });
+
+        map.on('click', 'counties', function(e) {
+            var feature = e.features[0];
+
+            console.log("click");
+
+            map.setPaintProperty("counties", 'fill-color', "#6e599f");
         });
         
         map.on('mouseleave', 'counties', function() {
@@ -104,4 +103,8 @@ export class MapBoxComponent implements OnInit {
     });	
   }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+    
+    
+
 }

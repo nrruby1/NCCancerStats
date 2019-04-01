@@ -1,7 +1,21 @@
-<app-attribute-tabs (changeEvent)="listComp.changeList($event)"></app-attribute-tabs>
 <div class="container"
       fxLayout="row"
-      fxLayoutAlign="right stretch">
-    <app-attribute-list fxFlex="15" #listComp></app-attribute-list>
-    <app-map-box fxFlex></app-map-box>
+      fxLayoutAlign="stretch stretch">
+
+  <div fxLayout="column"
+        fxLayoutAlign="start">
+    <app-map-box fxFlexAlign="start"></app-map-box>
+
+
+    <div fxLayout="row"
+          fxLayoutAlign="end stretch">
+      <app-attribute-list fxFlex="auto" [setID]=0></app-attribute-list>
+      <app-attribute-list fxFlex="auto" [setID]=1></app-attribute-list>
+      <app-attribute-list fxFlex="auto" [setID]=2></app-attribute-list>
+    </div>
+
+  </div>
+
+  <app-map-screen-chart fxFlexAlign="stretch"></app-map-screen-chart>
 </div>
+

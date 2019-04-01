@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Constraints } from '../constraints';
+import { AttributeData } from './attribute-consist';
 
 @Component({
   selector: 'app-attribute-list',
@@ -18,36 +19,32 @@ export class AttributeListComponent implements OnInit {
   /** The current set of items. */
   set = [];
   /** Reference to the Constraints class. */
-  constraints = new Constraints();
+  constraints: Constraints = new Constraints();
 
-  years = [
-    {id: 1, name: '2010'},
-    {id: 2, name: '2011'},
-    {id: 3, name: '2012'},
-    {id: 4, name: '2013'},
-    {id: 5, name: '2014'}
-  ];
+  attrData: AttributeData = AttributeData.getInstance();
+  @Input('setID') setID: number;
 
   /**
    * Initializes the attribute list to counties.
    * @param formBuilder 
    */
   constructor(private formBuilder: FormBuilder) { 
-    this.setList(this.constraints.counties);
+    //this.setList(this.constraints.years, this.constraints.YEARS_CONST);
+    //this.setList(this.constraints.counties, this.constraints.COUNTIES_CONST);
   }
 
   /**
    * Changes the list according to input from AttributeTabsComponents.
    * @param strNum 0,1,2 from selected attribute tab.
    */
-  changeList(strNum) {
+  changeList(strNum: number) {
     console.log("strNum", strNum);
-    if(strNum === 1) {
-      this.setList(this.constraints.years);
-    } else if(strNum === 2) {
-      this.setList(this.constraints.types);
+    if(strNum === this.constraints.YEARS_CONST) {
+      this.setList(this.constraints.years, strNum);
+    } else if(strNum === this.constraints.TYPES_CONST) {
+      this.setList(this.constraints.types, strNum);
     } else {
-      this.setList(this.constraints.counties);
+      this.setList(this.constraints.counties, strNum);
     }
   }
 
@@ -55,16 +52,28 @@ export class AttributeListComponent implements OnInit {
    * Sets the list and updates the view.
    * @param set The new set.
    */
-  setList(set) {
+  setList(set, setNum) {
     this.set = set;
+    this.setID = setNum;
     const controls = this.set.map(c => new FormControl(false));
-    
+    //console.log("HERE A");
+
     //Updates the view
     this.form = this.formBuilder.group({
       set: new FormArray(controls)
     });
+    //console.log("HERE B");
   }
 
-  ngOnInit() {}
+  
+  onCheckboxChange(event: any, id: number) {
+    //console.log(this.setID + " : " + id + " : " + event.currentTarget.checked);
+    this.attrData.setData(this.setID, id, event.currentTarget.checked);
+  }  
+ 
+  ngOnInit() {
+    this.changeList(this.setID);
+  }
 
 }
+
