@@ -86,7 +86,7 @@ export class MapScreenChartComponent implements OnInit {
 
 }
 
-
+/*
 @Component({
   selector: 'graph-dialog',
   templateUrl: 'graph-dialog'
@@ -94,4 +94,4 @@ export class MapScreenChartComponent implements OnInit {
 export class GraphDialog {
   constructor(public dialogRef: MatDialogRef<GraphDialog>, 
     @Inject(MAT_DIALOG_DATA) public data: ExData) {}
-}
+}*/
