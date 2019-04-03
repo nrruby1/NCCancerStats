@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling'
@@ -22,6 +23,7 @@ import { MapScreenSubComponent } from './map-screen-sub/map-screen-sub.component
 import { MapScreenChartComponent } from './map-screen-chart/map-screen-chart.component';
 import { DemoComponentComponent } from './demo-component/demo-component.component';
 import { MapScreenSub2Component } from './map-screen-sub2/map-screen-sub2.component';
+import { GraphDialogComponent } from './graph-dialog/graph-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { MapScreenSub2Component } from './map-screen-sub2/map-screen-sub2.compon
     MapScreenSubComponent,
     MapScreenChartComponent,
     DemoComponentComponent,
-    MapScreenSub2Component
+    MapScreenSub2Component,
+    GraphDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { MapScreenSub2Component } from './map-screen-sub2/map-screen-sub2.compon
     MatTabsModule,
     MatRadioModule,
     MatTableModule,
+    MatDialogModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -53,7 +57,7 @@ import { MapScreenSub2Component } from './map-screen-sub2/map-screen-sub2.compon
     MatTabsModule
   ],
   providers: [],
-  entryComponents: [MapScreenComponent, StatsScreenComponent, DemoComponentComponent],
+  entryComponents: [MapScreenComponent, StatsScreenComponent, DemoComponentComponent, GraphDialogComponent],
   bootstrap: [AppComponent],
 })
 
