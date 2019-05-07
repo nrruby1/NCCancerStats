@@ -1,28 +1,13 @@
-<mat-radio-group name="tabChartSelect">
-  <mat-radio-button #table value="Table" checked>
-    Table
-  </mat-radio-button>
+<button mat-raised-button (click)="openDialog()">Generate Graph</button>
 
-  <mat-radio-button #chart value="Chart" (change)="loadGraph()">
-    Chart
-  </mat-radio-button>
-</mat-radio-group>
+<div class="table-container">
+  <table mat-table [dataSource]="data" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column" *ngFor="let column of columnHeads">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    </ng-container>
 
-
-<div *ngIf="table.checked; else graphBlock">
-  <div class="table-container">
-    <table mat-table [dataSource]="data" class="mat-elevation-z8">
-      <ng-container [matColumnDef]="column" *ngFor="let column of columnHeads">
-        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="columnHeads"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnHeads;"></tr>
-    </table>
-  </div>
+    <tr mat-header-row *matHeaderRowDef="columnHeads"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnHeads;"></tr>
+  </table>
 </div>
- 
-<ng-template #graphBlock>
-  <div id="chartContainer" style="height: 300px; width: 400px;"></div>
-</ng-template>
