@@ -41,7 +41,7 @@ export class MainTabsComponent implements OnInit {
       if(id === 0) {
         componentFactory = this.componentFactoryResolver.resolveComponentFactory(MapScreenComponent);
       } else if(id === 1) {
-        componentFactory = this.componentFactoryResolver.resolveComponentFactory(DemoComponentComponent);
+        componentFactory = this.componentFactoryResolver.resolveComponentFactory(StatsScreenComponent);
       }
     }
     viewContainerRef.clear();

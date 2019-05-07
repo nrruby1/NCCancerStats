@@ -7,7 +7,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ScrollingModule } from '@angular/cdk/scrolling'
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,8 @@ import { MapScreenChartComponent } from './map-screen-chart/map-screen-chart.com
 import { DemoComponentComponent } from './demo-component/demo-component.component';
 import { MapScreenSub2Component } from './map-screen-sub2/map-screen-sub2.component';
 import { GraphDialogComponent } from './graph-dialog/graph-dialog.component';
+
+import { CountiesService } from './counties.service';
 
 @NgModule({
   declarations: [
@@ -51,12 +54,13 @@ import { GraphDialogComponent } from './graph-dialog/graph-dialog.component';
     FlexLayoutModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ScrollingModule
+    ScrollingModule,
+    HttpClientModule
   ],
   exports: [
     MatTabsModule
   ],
-  providers: [],
+  providers: [CountiesService],
   entryComponents: [MapScreenComponent, StatsScreenComponent, DemoComponentComponent, GraphDialogComponent],
   bootstrap: [AppComponent],
 })
