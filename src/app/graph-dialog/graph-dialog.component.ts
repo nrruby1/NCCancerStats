@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import * as CanvasJS from 'canvasjs/canvasjs.min';
+import * as CanvasJS from 'canvasjs/dist/canvasjs.min';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { cancerData } from '../map-screen-chart/map-screen-chart.component';
 
