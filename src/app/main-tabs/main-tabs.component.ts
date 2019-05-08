@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular
 import { MatTabChangeEvent } from '@angular/material';
 import { MainTabsDirective } from '../main-tabs.directive';
 import { MapScreenComponent } from '../map-screen/map-screen.component';
-import { DemoComponentComponent } from '../demo-component/demo-component.component';
 import { StatsScreenComponent } from '../stats-screen/stats-screen.component';
 
 @Component({

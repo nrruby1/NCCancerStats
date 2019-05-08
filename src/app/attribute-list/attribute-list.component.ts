@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Constraints } from '../constraints';
-import { AttributeData } from './attribute-consist';
+import { AttributeData } from '../attribute-consist';
 
 @Component({
   selector: 'app-attribute-list',
@@ -20,7 +20,7 @@ export class AttributeListComponent implements OnInit {
   set = [];
   /** Reference to the Constraints class. */
   constraints: Constraints = new Constraints();
-
+  /**The attribute data for persistence. */
   attrData: AttributeData = AttributeData.getInstance();
   @Input('setID') setID: number;
 
@@ -65,12 +65,20 @@ export class AttributeListComponent implements OnInit {
     //console.log("HERE B");
   }
 
-  
+  /**
+   * When a checkbox changes, sets the attribute persistence.
+   * 
+   * @param event The reference to the even.
+   * @param id The id of the checkbox.
+   */
   onCheckboxChange(event: any, id: number) {
     //console.log(this.setID + " : " + id + " : " + event.currentTarget.checked);
     this.attrData.setData(this.setID, id, event.currentTarget.checked);
   }  
  
+  /**
+   * Sets the initial list.
+   */
   ngOnInit() {
     this.changeList(this.setID);
   }

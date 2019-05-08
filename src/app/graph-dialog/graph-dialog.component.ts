@@ -1,8 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import * as CanvasJS from 'canvasjs/canvasjs.min';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { ExData } from '../map-screen-chart/map-screen-chart.component';
+import { cancerData } from '../map-screen-chart/map-screen-chart.component';
 
+interface displayData {
+  label: string;
+  y: number;
+}
+
+/**
+ * A popup dialog box for displaying a graph.
+ */
 @Component({
   selector: 'app-graph-dialog',
   templateUrl: './graph-dialog.component.html',
@@ -10,15 +18,29 @@ import { ExData } from '../map-screen-chart/map-screen-chart.component';
 })
 export class GraphDialogComponent implements OnInit {
 
+  /**
+   * Default construct
+   * @param dialogRef Reference to the dialog.
+   * @param data The data to display.
+   */
   constructor(public dialogRef: MatDialogRef<GraphDialogComponent>, 
-    @Inject(MAT_DIALOG_DATA) public data: ExData) { }
+    @Inject(MAT_DIALOG_DATA) public data: cancerData[]) { }
 
+    /**The chart object.*/
     chart1: CanvasJS.Chart;
+    /**The cases data to display.*/
+    casesData: displayData[] = new Array();
+    /**The deaths data to display. */
+    deathsData: displayData[] = new Array();
 
-    /*ngOnInit() { 
-      console.log("init");
+    /**
+     * Formats the data and displays the chart.
+     */
+    ngOnInit() { 
+      this.formatData();
       this.chart1 = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
+        exportEnabled: true,
         axisY: {
           titleFontColor: "#4F81BC",
           lineColor: "#4F81BC",
@@ -37,33 +59,31 @@ export class GraphDialogComponent implements OnInit {
           name: "Number of Cancer Cases",
           legendText: "Cancer Cases",
           showInLegend: true, 
-          dataPoints:[
-            {label: "Buncombe", y: 1536},
-            {label: "Haywood", y: 436},
-            {label: "Jackson", y: 217},
-            {label: "Macon", y: 301},
-            {label: "Swain", y: 103}
-          ], 
+          dataPoints: this.casesData
         },
         {
           type: "column",	
           name: "Number of Deaths",
           legendText: "Deaths",
           showInLegend: true,
-          dataPoints:[
-            {label: "Buncombe", y: 551},
-            {label: "Haywood", y: 172},
-            {label: "Jackson", y: 69},
-            {label: "Macon", y: 104},
-            {label: "Swain", y: 28}
-          ]
+          dataPoints: this.deathsData
         }]
       });
   
       this.chart1.render(); 
-    }*/
+    }
 
-    ngOnInit() { 
+    /**
+     * Formats the data by splitting up data.
+     */
+    formatData() {
+      for(var i = 0; i < this.data.length && i < 10; i++) {
+        this.casesData.push({label: this.data[i].county.toString(), y: this.data[i].cases});
+        this.deathsData.push({label: this.data[i].county.toString(), y: this.data[i].deaths});
+      }
+    }
+
+    /*ngOnInit() { 
       this.chart1 = new CanvasJS.Chart("chartContainer", {
         title: {
           text: "Jackson County"
@@ -116,6 +136,6 @@ export class GraphDialogComponent implements OnInit {
       });
   
       this.chart1.render(); 
-    }
+    }*/
 
 }

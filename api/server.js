@@ -7,17 +7,19 @@ const express = require('express'),
     mongoose = require('mongoose'),
     config = require('./DB');
 
-    mongoose.Promise = global.Promise;
-    mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-      () => {console.log('Database is connected') },
-      err => { console.log('Can not connect to the database'+ err)}
-    );
+const countyCancerRoute = require('./routes/county-cancer.route');
+mongoose.Promise = global.Promise;
+mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+  () => {console.log('Database is connected') },
+  err => { console.log('Can not connect to the database'+ err)}
+);
 
-    const app = express();
-    app.use(bodyParser.json());
-    app.use(cors());
-    const port = process.env.PORT || 4000;
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+app.use('/countyCancer', countyCancerRoute);
+const port = process.env.PORT || 4000;
 
-    const server = app.listen(port, function(){
-     console.log('Listening on port ' + port);
-    });
+const server = app.listen(port, function(){
+  console.log('Listening on port ' + port);
+});
