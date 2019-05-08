@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. Run `npm install --save-dev @angular-devkit/build-angular` to get the angular devkit (it might take a while)
 2. Navigate into `api/`. Run `npm start`. Leave window running or run in background.
-3. Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+3. Run `ng build` to build the project.
 4. Run `ng serve` for a dev server. Navigate to [http://localhost:4200/](http://localhost:4200/) in the browser. The app will automatically reload if you change any of the source files.
 
 ## MongoDB server
