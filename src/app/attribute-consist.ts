@@ -1,14 +1,25 @@
-import { Constraints } from '../constraints';
+import { Constraints } from './constraints';
 
+/**
+ * Stores boolean data so the attribute checkbox values persist. Models the Singleton pattern.
+ */
 export class AttributeData {
+    /**Only instance of the class.*/
     private static instance: AttributeData;
 
+    /**Data for if the counties are checked.*/
     private countiesData: boolean[];
+    /**Data for if the years are checked.*/
     private yearsData: boolean[];
+    /**Data for if the types are checked.*/
     private typesData: boolean[];
 
+    /**The constraints for consistency.*/
     constraints = new Constraints();
 
+    /**
+     * Initializes the arrays.
+     */
     private constructor() {
         this.countiesData = [];
         this.yearsData = [];
@@ -20,12 +31,15 @@ export class AttributeData {
         for(let i = 0; i < this.constraints.yearsNum; i++) {
             this.yearsData.push(false);
         }
+        //this.yearsData[1]=true;
 
-        for(let i = 0; i < this.constraints.typesNum; i++) {
-            this.typesData.push(false);
-        }
+        this.typesData.push(true);
+        this.typesData.push(false);
     }
 
+    /**
+     * Returns the instance of the class.
+     */
     static getInstance() {
         if(!AttributeData.instance) {
             AttributeData.instance = new AttributeData();
@@ -33,6 +47,12 @@ export class AttributeData {
         return AttributeData.instance;
     }
 
+    /**
+     * Returns the set of specified data.
+     * 
+     * @param setID The id of the set.
+     * @return The set of data.
+     */
     getData(setID: number) {
         if(setID === this.constraints.COUNTIES_CONST){
             return this.countiesData;
@@ -43,6 +63,13 @@ export class AttributeData {
         }
     }
 
+    /**
+     * Sets a value in one of the sets.
+     * 
+     * @param setID The id of the set.
+     * @param index The index to change.
+     * @param value The value to set it to.
+     */
     setData(setID: number, index: number, value: boolean) {
         if(setID === this.constraints.COUNTIES_CONST){
             this.countiesData[index] = value;

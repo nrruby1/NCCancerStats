@@ -18,12 +18,8 @@ import { MapScreenComponent } from './map-screen/map-screen.component';
 import { StatsScreenComponent } from './stats-screen/stats-screen.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainTabsDirective } from './main-tabs.directive';
-import { AttributeTabsComponent } from './attribute-tabs/attribute-tabs.component';
 import { AttributeListComponent } from './attribute-list/attribute-list.component';
-import { MapScreenSubComponent } from './map-screen-sub/map-screen-sub.component';
 import { MapScreenChartComponent } from './map-screen-chart/map-screen-chart.component';
-import { DemoComponentComponent } from './demo-component/demo-component.component';
-import { MapScreenSub2Component } from './map-screen-sub2/map-screen-sub2.component';
 import { GraphDialogComponent } from './graph-dialog/graph-dialog.component';
 
 import { CountiesService } from './counties.service';
@@ -36,12 +32,8 @@ import { CountiesService } from './counties.service';
     MapScreenComponent,
     StatsScreenComponent,
     MainTabsDirective,
-    AttributeTabsComponent,
     AttributeListComponent,
-    MapScreenSubComponent,
     MapScreenChartComponent,
-    DemoComponentComponent,
-    MapScreenSub2Component,
     GraphDialogComponent
   ],
   imports: [
@@ -61,7 +53,7 @@ import { CountiesService } from './counties.service';
     MatTabsModule
   ],
   providers: [CountiesService],
-  entryComponents: [MapScreenComponent, StatsScreenComponent, DemoComponentComponent, GraphDialogComponent],
+  entryComponents: [MapScreenComponent, StatsScreenComponent, GraphDialogComponent],
   bootstrap: [AppComponent],
 })
 

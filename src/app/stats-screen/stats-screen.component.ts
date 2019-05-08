@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatRadioChange } from '@angular/material';
+import { CountiesService } from '../counties.service';
+import { AttributeData } from '../attribute-consist';
+import { Constraints } from '../constraints';
 
 export interface cancerData {
   county: String;
@@ -35,26 +38,53 @@ const EXAMPLE_DATA: cancerData[] = [
 
 /** 
  * Component for the stats screen.
- * 
- * **Just a container.
  */
 export class StatsScreenComponent implements OnInit {
 
-  data: cancerData[] = EXAMPLE_DATA;
-  columnHeads: string[] = ["county", "cases", "case_rate", "deaths", "death_rate"];
+  /**The data being displayed.*/
+  data: cancerData[];
+  /**The attribute data for persistence. */
+  attributeData: AttributeData = AttributeData.getInstance();
+  /**The headings of the columns.*/
+  columnHeads: string[] = ["county", "cases", "case_rate", "deaths", "death_rates"];
+  /** Reference to the Constraints class. */
+  constraints: Constraints = new Constraints();
 
+  /**The documents to display.*/
   documents: string[] = ["2010 Cancer", "2010 Population Age", 
     "2011 Cancer", "2011 Population Age", "2012 Cancer", 
     "2012 Population Age", "2013 Cancer", "2013 Population Age", 
     "2014 Cancer", "2014 Population Age"];
 
-  constructor() { }
+  constructor(private cs: CountiesService) { }
 
+  /**Initializes data.*/
   ngOnInit() {
+    this.cs.getCountyCancer(1).subscribe((cData: cancerData[]) => {this.data=cData});
   }
 
+  /**
+  * When the radio changes, change the data.
+  * @param event The change event.
+  */
   radioChange(event: MatRadioChange) {
-    console.log(event.value);
+    switch(event.value) {
+      case this.documents[0]: 
+        this.cs.getCountyCancer(0).subscribe((cData: cancerData[]) => {this.data=cData});
+        break;
+      case this.documents[2]: 
+        this.cs.getCountyCancer(1).subscribe((cData: cancerData[]) => {this.data=cData});
+        break;
+      case this.documents[4]: 
+        this.cs.getCountyCancer(2).subscribe((cData: cancerData[]) => {this.data=cData});
+        break;
+      case this.documents[6]: 
+        this.cs.getCountyCancer(3).subscribe((cData: cancerData[]) => {this.data=cData});
+        break;
+      case this.documents[8]: 
+        this.cs.getCountyCancer(4).subscribe((cData: cancerData[]) => {this.data=cData});
+        break;
+    }
   }
 
 }

@@ -9,5 +9,6 @@ table {
 .table-container {
   position: relative;
   overflow: auto;
-  width: 540px
+  width: 560px;
+  height: 551px;
 }

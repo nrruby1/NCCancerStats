@@ -11,7 +11,11 @@
           fxLayoutAlign="end stretch">
       <app-attribute-list fxFlex="auto" [setID]=0></app-attribute-list>
       <app-attribute-list fxFlex="auto" [setID]=1></app-attribute-list>
-      <app-attribute-list fxFlex="auto" [setID]=2></app-attribute-list>
+      <mat-radio-group class="radio-group" 
+      (change)="radioChange($event)">
+        <mat-radio-button class="radio-button" value="0" checked=true>Cancer Statistics</mat-radio-button>
+        <mat-radio-button class="radio-button" value="1" disabled=true>Population Age Statistics</mat-radio-button>
+      </mat-radio-group>
     </div>
 
   </div>

@@ -4,14 +4,21 @@
 export class Constraints {
     constructor(){}
 
+    /**The id of the county attribute.*/
     COUNTIES_CONST: number = 0;
+    /**The id of the years attribute.*/
     YEARS_CONST: number = 1;
+    /**The id of the types attribute.*/
     TYPES_CONST: number = 2;
 
+    /**The number of years.*/
     yearsNum: number = 5;
+    /**The number of types.*/
     typesNum: number = 2;
+    /**The number of counties.*/
     countiesNum: number = 100;
 
+    /**The set of years.*/
     years = [
         {id: 1, name: '2010'},
         {id: 2, name: '2011'},
@@ -20,11 +27,13 @@ export class Constraints {
         {id: 5, name: '2014'}
     ];
 
+    /**The set of types.*/
     types = [
         {id: 1, name: 'Cancer'},
         {id: 2, name: 'Vital'}
     ];
 
+    /**The set of counties.*/
     counties = [
         {id: 1, name: 'Alamance'},
         {id: 2, name: 'Alexander'},

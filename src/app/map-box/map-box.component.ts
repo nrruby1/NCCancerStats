@@ -1,8 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-//import { MapService } from '../map.service';
-//import { GeoJson, FeatureCollection } from '../map';
+import { CountiesService } from '../counties.service';
 
+/**
+ * Structure for the cancer data.
+ */
+export interface cancerData {
+    county: String;
+    cases: number;
+    case_rate: number;
+    deaths: number;
+    death_rates: number;
+  }
+
+  /**
+   * Constructs and displays the map.
+   */
 @Component({
   selector: 'app-map-box',
   templateUrl: './map-box.component.html',
@@ -19,7 +32,7 @@ export class MapBoxComponent implements OnInit {
   maxZoom: 5.9;
   zoom: 5.9;
 
-  constructor() { };
+  constructor(private cs: CountiesService) { };
 
   ngOnInit() {
     this.buildMap();
@@ -27,6 +40,8 @@ export class MapBoxComponent implements OnInit {
 
   buildMap() {
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam1tYXNzZXkyIiwiYSI6ImNqbnA1bzByaTAweTQzcG1iZmFzb3huanIifQ.XpnPcIFiUfJOwhkqA_UX2w';
+    let data: cancerData[];
+    this.cs.getCountyCancer(0).subscribe((cData: cancerData[]) => {data=cData});
     var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
@@ -79,10 +94,12 @@ export class MapBoxComponent implements OnInit {
     
             // Single out the first found feature.
             var feature = e.features[0];
-    
+            var county: cancerData = MapBoxComponent.findCounty(data, feature.properties.NAME.toString())
+
             // Display a popup with the name of the county
             popup.setLngLat(e.lngLat)
-                .setText(feature.properties.NAME)
+                .setHTML(feature.properties.NAME + ' - 2010<br>cases: ' 
+                    + county.cases + '<br>deaths: ' + county.deaths)
                 .addTo(map);
         });
 
@@ -91,7 +108,7 @@ export class MapBoxComponent implements OnInit {
 
             console.log("click");
 
-            map.setPaintProperty("counties", 'fill-color', "#6e599f");
+            //map.setPaintProperty("counties", 'fill-color', "#6e599f");
         });
         
         map.on('mouseleave', 'counties', function() {
@@ -101,6 +118,22 @@ export class MapBoxComponent implements OnInit {
             this.overlay.style.display = 'none';
         });
     });	
+  }
+
+  /**
+   * Finds the county by name and returns the object.
+   * 
+   * @param dataList The list of data.
+   * @param c The name of the county.
+   */
+  static findCounty(dataList: cancerData[], c: string) {
+    //let regex = new RegExp('^[0-9:]* *' + c);
+    for(var i = 0; i < dataList.length; i++) {
+      //console.log(dataList[i].county + " " + i);
+      if(dataList[i].county.toString() == c) {
+        return dataList[i];
+      }
+    }
   }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
   
