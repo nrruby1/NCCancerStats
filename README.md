@@ -30,14 +30,14 @@ Raw Statistics Screen:
 
 *In order for the graphs to generate properly you must get a canvasjs key (we used the free student version which is only good for 1 user)*
 
-## Node.js server
+### Node.js server
 
 Navigate into `api/`. Run `npm start`. This server connects to the cloud-based MongoDB database.
 
-## Development server
+### Development server
 
 Run `ng serve --open` for a dev server. Navigate to [http://localhost:4200/](http://localhost:4200/) in the browser. The app will automatically reload if you change any of the source files.
 
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
